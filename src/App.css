@@ -1,0 +1,107 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.starting-page>form{
+  display:  flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+.starting-page>form>button{
+  width: 100%;
+}
+.main-container{
+  display: flex;
+  width: 100%;
+  height: 600px;
+}
+.player-Info,.killed-piece-container{
+  width: 250px;
+  height: 100%;
+  border: 1px solid red;
+}
+
+.App{
+  margin-top: 50px;
+  height: 500px;
+  width: 800px;
+  display: grid;
+  grid-template: 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5%/ 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% ;
+  border: 2px solid black;
+
+}
+.rotate-App{
+  margin-top: 50px;
+  height: 500px;
+  width: 800px;
+  display: grid;
+  grid-template: 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5%/ 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% ;
+  border: 2px solid black;
+   transform: rotate(180deg);
+}
+.rotate-App>#container>img{
+   transform: rotate(180deg);
+
+}
+.rotate-App>#container>span{
+   transform: rotate(180deg);
+
+}
+.white{
+  background-color:  #7fa650;
+  height: 100%;
+  width: 100%;
+}
+#container{
+  height: 100%;
+  width: 100%;
+  position: relative;
+  
+}
+.black{
+  background-color: rgba(255,255,0,.2);
+}
+
+#container > img {
+  height: 100%;
+  width: 100%;
+}
+.spandiv{
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.route{
+  /* background-color: rgb(84, 180, 53); */
+  background-color: rgb(158, 101, 158);
+
+  border: 1px solid black;
+  
+}
+.opponent{
+background-color: red;
+box-shadow: rgb(161, 90, 90);
+}
+.prev-step{
+  background-color: rgb(210, 240, 105);
+}
+.current-step{
+  background-color: rgb(172, 172, 109);
+}
+.player-Info{
+  display: grid;
+  grid-template: 50% 50%/ 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5%;
+  border: 2px solid black;
+}
+.player-Info>img{
+  width: 200%;
+  height: 20%;
+}

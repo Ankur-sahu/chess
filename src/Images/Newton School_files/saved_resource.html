@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<!-- saved from url=(0057)https://my.newtonschool.co/playground/markup/5c6sw84wpmyt -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  <script src="./jquery-3.4.1.min.js.download" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="./lodash.core.js.download" integrity="sha256-tsIbwIT+4qFYQl3lJqYOZst6ot+JaR73T5eusuTukXM=" crossorigin="anonymous"></script>
+  <script src="./babel.js.download" integrity="sha256-L/S5mZS8SPJVWoKym3Zwgf2f3/s3X3MaZ7QBA9HdnN8=" crossorigin="anonymous"></script>
+  <script crossorigin="" src="./react.production.min.js.download"></script>
+  <script crossorigin="" src="./react-dom.production.min.js.download"></script>
+  <title>Document</title>
+  <style>
+    body {
+
+font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+font-size: 16px;
+
+margin: 0;
+
+padding: 0;
+
+}
+
+.game-container {
+
+display: none;
+
+}
+
+#game-result,
+
+#round-result {
+
+display: none;
+
+}
+  </style>
+<script>"use strict";
+
+var gameNumberEl = document.getElementById("game-number");
+
+var gameContainerEl = document.getElementById("game-container");
+
+var rockBtnEl = document.getElementById("rock");
+
+var paperBtnEl = document.getElementById("paper");
+
+var scissorBtnEl = document.getElementById("scissors");
+
+var computerChooseEl = document.getElementById("computer-choose");
+
+var roundResultEl = document.getElementById("round-result");
+
+var userPointsEl = document.getElementById("user-points");
+
+var computerPointsEl = document.getElementById("computer-points");
+
+var roundsLeftEl = document.getElementById("rounds-left");
+
+var gameResultEl = document.getElementById("game-result");
+
+var ROCK = 0;
+
+var PAPER = 1;
+
+var SCISSORS = 2;
+
+function playGame() {
+
+    userPoints = 0;
+
+    userPointsEl.innerText = 0;
+
+    computerPoints = 0;
+
+    computerPointsEl.innerText = 0;
+
+    roundsLeft = parseInt(gameNumberEl.value, 10);
+
+    if (roundsLeft < 0) {
+
+        alert("Number of turns cannot be -ve");
+    } else {
+
+        roundsLeftEl.innerText = roundsLeft;
+
+        gameContainerEl.style.display = "block";
+
+        gameResultEl.style.display = "none";
+    }
+}
+
+// game variables
+
+var userPoints = 0;
+
+var computerPoints = 0;
+
+var roundsLeft = parseInt(gameNumberEl.value, 10);
+
+roundsLeftEl.innerText = roundsLeft;
+
+function userChoose(e) {
+
+    if (roundsLeft <= 0) return;
+
+    var choices = ["ROCK", "PAPER", "SCISSORS"];
+
+    var outcomes = ["WON", "TIE", "LOSE"];
+
+    var userChoose = parseInt(e.target.value, 10);
+
+    var computerChoose = Math.floor(Math.random() * 3);
+
+    window.computerChoose = computerChoose;
+
+    console.log(window.computerChoose);
+
+    computerChooseEl.innerText = choices[computerChoose];
+
+    var outcome = 1; // [win, tie, loose]
+
+    if (choices[computerChoose] == 'ROCK' && choices[userChoose] == 'PAPER' || choices[computerChoose] == 'SCISSORS' && choices[userChoose] == 'ROCK' || choices[computerChoose] == 'PAPER' && choices[userChoose] == 'SCISSORS') {
+
+        // use Wins
+
+        outcome = 0;
+
+        userPoints += 1;
+    } else if (choices[computerChoose] == 'PAPER' && choices[userChoose] == 'ROCK' || choices[computerChoose] == 'ROCK' && choices[userChoose] == 'SCISSORS' || choices[computerChoose] == 'SCISSORS' && choices[userChoose] == 'PAPER') {
+
+        // lose
+
+        outcome = 2;
+
+        computerPoints += 1;
+    } else {
+
+        // tie
+
+        outcome = 1;
+    }
+
+    // setting game variables after move
+
+    roundsLeft -= 1;
+
+    roundResultEl.innerText = "" + outcomes[outcome];
+
+    roundResultEl.style.display = "block";
+
+    userPointsEl.innerText = userPoints;
+
+    computerPointsEl.innerText = computerPoints;
+
+    roundsLeftEl.innerText = roundsLeft;
+
+    if (roundsLeft == 0) {
+
+        // game over
+
+        gameResultEl.innerText = "" + outcomes[userPoints == computerPoints ? 1 : userPoints > computerPoints ? 0 : 2];
+
+        gameResultEl.style.display = "block";
+
+        gameContainerEl.style.display = "none";
+    }
+}
+
+// button click
+
+rockBtnEl.addEventListener('click', userChoose);
+
+paperBtnEl.addEventListener('click', userChoose);
+
+scissorBtnEl.addEventListener('click', userChoose);
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIklubGluZSBCYWJlbCBzY3JpcHQiXSwibmFtZXMiOlsiZ2FtZU51bWJlckVsIiwiZG9jdW1lbnQiLCJnZXRFbGVtZW50QnlJZCIsImdhbWVDb250YWluZXJFbCIsInJvY2tCdG5FbCIsInBhcGVyQnRuRWwiLCJzY2lzc29yQnRuRWwiLCJjb21wdXRlckNob29zZUVsIiwicm91bmRSZXN1bHRFbCIsInVzZXJQb2ludHNFbCIsImNvbXB1dGVyUG9pbnRzRWwiLCJyb3VuZHNMZWZ0RWwiLCJnYW1lUmVzdWx0RWwiLCJST0NLIiwiUEFQRVIiLCJTQ0lTU09SUyIsInBsYXlHYW1lIiwidXNlclBvaW50cyIsImlubmVyVGV4dCIsImNvbXB1dGVyUG9pbnRzIiwicm91bmRzTGVmdCIsInBhcnNlSW50IiwidmFsdWUiLCJhbGVydCIsInN0eWxlIiwiZGlzcGxheSIsInVzZXJDaG9vc2UiLCJlIiwiY2hvaWNlcyIsIm91dGNvbWVzIiwidGFyZ2V0IiwiY29tcHV0ZXJDaG9vc2UiLCJNYXRoIiwiZmxvb3IiLCJyYW5kb20iLCJ3aW5kb3ciLCJjb25zb2xlIiwibG9nIiwib3V0Y29tZSIsImFkZEV2ZW50TGlzdGVuZXIiXSwibWFwcGluZ3MiOiI7O0FBQ0ksSUFBSUEsZUFBZUMsU0FBU0MsY0FBVCxDQUF3QixhQUF4QixDQUFuQjs7QUFFSixJQUFJQyxrQkFBa0JGLFNBQVNDLGNBQVQsQ0FBd0IsZ0JBQXhCLENBQXRCOztBQUVBLElBQUlFLFlBQVlILFNBQVNDLGNBQVQsQ0FBd0IsTUFBeEIsQ0FBaEI7O0FBRUEsSUFBSUcsYUFBYUosU0FBU0MsY0FBVCxDQUF3QixPQUF4QixDQUFqQjs7QUFFQSxJQUFJSSxlQUFlTCxTQUFTQyxjQUFULENBQXdCLFVBQXhCLENBQW5COztBQUVBLElBQUlLLG1CQUFtQk4sU0FBU0MsY0FBVCxDQUF3QixpQkFBeEIsQ0FBdkI7O0FBRUEsSUFBSU0sZ0JBQWdCUCxTQUFTQyxjQUFULENBQXdCLGNBQXhCLENBQXBCOztBQUVBLElBQUlPLGVB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VCxDQUE3Qjs7QUFFQTlCLGtCQUFjZ0IsS0FBZCxDQUFvQkMsT0FBcEIsR0FBOEIsT0FBOUI7O0FBRUFoQixpQkFBYVMsU0FBYixHQUF5QkQsVUFBekI7O0FBRUFQLHFCQUFpQlEsU0FBakIsR0FBNkJDLGNBQTdCOztBQUVBUixpQkFBYU8sU0FBYixHQUF5QkUsVUFBekI7O0FBRUEsUUFBSUEsY0FBYyxDQUFsQixFQUFxQjs7QUFFakI7O0FBRUFSLHFCQUFhTSxTQUFiLFFBQTRCVyxTQUFTWixjQUFjRSxjQUFkLEdBQStCLENBQS9CLEdBQW1DRixhQUFhRSxjQUFiLEdBQThCLENBQTlCLEdBQWtDLENBQTlFLENBQTVCOztBQUVBUCxxQkFBYVksS0FBYixDQUFtQkMsT0FBbkIsR0FBNkIsT0FBN0I7O0FBRUF0Qix3QkFBZ0JxQixLQUFoQixDQUFzQkMsT0FBdEIsR0FBZ0MsTUFBaEM7QUFFSDtBQUVKOztBQUVEOztBQUVBckIsVUFBVW1DLGdCQUFWLENBQTJCLE9BQTNCLEVBQW9DYixVQUFwQzs7QUFFQXJCLFdBQVdrQyxnQkFBWCxDQUE0QixPQUE1QixFQUFxQ2IsVUFBckM7O0FBRUFwQixhQUFhaUMsZ0JBQWIsQ0FBOEIsT0FBOUIsRUFBdUNiLFVBQXZDIiwiZmlsZSI6IklubGluZSBCYWJlbCBzY3JpcHQiLCJzb3VyY2VzQ29udGVudCI6WyJcbiAgICB2YXIgZ2FtZU51bWJlckVsID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoXCJnYW1lLW51bWJlclwiKTtcblxudmFyIGdhbWVDb250YWluZXJFbCA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKFwiZ2FtZS1jb250YWluZXJcIik7XG5cbnZhciByb2NrQnRuRWwgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChcInJvY2tcIik7XG5cbnZhciBwYXBlckJ0bkVsID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoXCJwYXBlclwiKTtcblxudmFyIHNjaXNzb3JCdG5FbCA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKFwic2Npc3NvcnNcIik7XG5cbnZhciBjb21wdXRlckNob29zZUVsID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoXCJjb21wdXRlci1jaG9vc2VcIik7XG5cbnZhciByb3VuZFJlc3VsdEVsID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoXCJyb3VuZC1yZXN1bHRcIik7XG5cbnZhciB1c2VyUG9pbnRzRWwgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChcInVzZXItcG9pbnRzXCIpO1xuXG52YXIgY29tcHV0ZXJQb2ludHNFbCA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKFwiY29tcHV0ZXItcG9pbnRzXCIpO1xuXG52YXIgcm91bmRzTGVmdEVsID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoXCJyb3VuZHMtbGVmdFwiKTtcblxudmFyIGdhbWVSZXN1bHRFbCA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKFwiZ2FtZS1yZXN1bHRcIik7XG5cbmNvbnN0IFJPQ0sgPSAwO1xuXG5jb25zdCBQQVBFUiA9IDE7XG5cbmNvbnN0IFNDSVNTT1JTID0gMjtcblxuZnVuY3Rpb24gcGxheUdhbWUoKSB7XG5cbiAgICB1c2VyUG9pbnRzID0gMDtcblxuICAgIHVzZXJQb2ludHNFbC5pbm5lclRleHQgPSAwO1xuXG4gICAgY29tcHV0ZXJQb2ludHMgPSAwO1xuXG4gICAgY29tcHV0ZXJQb2ludHNFbC5pbm5lclRleHQgPSAwO1xuXG4gICAgcm91bmRzTGVmdCA9IHBhcnNlSW50KGdhbWVOdW1iZXJFbC52YWx1ZSwgMTApO1xuXG4gICAgaWYgKHJvdW5kc0xlZnQgPCAwKSB7XG5cbiAgICAgICAgYWxlcnQoXCJOdW1iZXIgb2YgdHVybnMgY2Fubm90IGJlIC12ZVwiKTtcblxuICAgIH0gZWxzZSB7XG5cbiAgICAgICAgcm91bmRzTGVmdEVsLmlubmVyVGV4dCA9IHJvdW5kc0xlZnQ7XG5cbiAgICAgICAgZ2FtZUNvbnRhaW5lckVsLnN0eWxlLmRpc3BsYXkgPSBcImJsb2NrXCI7XG5cbiAgICAgICAgZ2FtZVJlc3VsdEVsLnN0eWxlLmRpc3BsYXkgPSBcIm5vbmVcIjtcblxuICAgIH1cblxufVxuXG4vLyBnYW1lIHZhcmlhYmxlc1xuXG52YXIgdXNlclBvaW50cyA9IDA7XG5cbnZhciBjb21wdXRlclBvaW50cyA9IDA7XG5cbnZhciByb3VuZHNMZWZ0ID0gcGFyc2VJbnQoZ2FtZU51bWJlckVsLnZhbHVlLCAxMCk7XG5cbnJvdW5kc0xlZnRFbC5pbm5lclRleHQgPSByb3VuZHNMZWZ0O1xuXG5mdW5jdGlvbiB1c2VyQ2hvb3NlKGUpIHtcblxuICAgIGlmIChyb3VuZHNMZWZ0IDw9IDApIHJldHVybjtcblxuICAgIGNvbnN0IGNob2ljZXMgPSBbXCJST0NLXCIsIFwiUEFQRVJcIiwgXCJTQ0lTU09SU1wiXTtcblxuICAgIGNvbnN0IG91dGNvbWVzID0gW1wiV09OXCIsIFwiVElFXCIsIFwiTE9TRVwiXTtcblxuICAgIGNvbnN0IHVzZXJDaG9vc2UgPSBwYXJzZUludChlLnRhcmdldC52YWx1ZSwgMTApO1xuXG4gICAgY29uc3QgY29tcHV0ZXJDaG9vc2UgPSBNYXRoLmZsb29yKE1hdGgucmFuZG9tKCkgKiAzKTtcblxuICAgIHdpbmRvdy5jb21wdXRlckNob29zZSA9IGNvbXB1dGVyQ2hvb3NlXG5cbiAgICBjb25zb2xlLmxvZyh3aW5kb3cuY29tcHV0ZXJDaG9vc2UpO1xuXG4gICAgY29tcHV0ZXJDaG9vc2VFbC5pbm5lclRleHQgPSBjaG9pY2VzW2NvbXB1dGVyQ2hvb3NlXTtcblxuICAgIHZhciBvdXRjb21lID0gMTsgLy8gW3dpbiwgdGllLCBsb29zZV1cblxuICAgIGlmICgoY2hvaWNlc1tjb21wdXRlckNob29zZV0gPT0gJ1JPQ0snICYmIGNob2ljZXNbdXNlckNob29zZV0gPT0gJ1BBUEVSJykgfHwgKGNob2ljZXNbY29tcHV0ZXJDaG9vc2VdID09ICdTQ0lTU09SUycgJiYgY2hvaWNlc1t1c2VyQ2hvb3NlXSA9PSAnUk9DSycpIHx8IChjaG9pY2VzW2NvbXB1dGVyQ2hvb3NlXSA9PSAnUEFQRVInICYmIGNob2ljZXNbdXNlckNob29zZV0gPT0gJ1NDSVNTT1JTJykpIHtcblxuICAgICAgICAvLyB1c2UgV2luc1xuXG4gICAgICAgIG91dGNvbWUgPSAwO1xuXG4gICAgICAgIHVzZXJQb2ludHMgKz0gMTtcblxuICAgIH0gZWxzZSBpZiAoKGNob2ljZXNbY29tcHV0ZXJDaG9vc2VdID09ICdQQVBFUicgJiYgY2hvaWNlc1t1c2VyQ2hvb3NlXSA9PSAnUk9DSycpIHx8IChjaG9pY2VzW2NvbXB1dGVyQ2hvb3NlXSA9PSAnUk9DSycgJiYgY2hvaWNlc1t1c2VyQ2hvb3NlXSA9PSAnU0NJU1NPUlMnKSB8fCAoY2hvaWNlc1tjb21wdXRlckNob29zZV0gPT0gJ1NDSVNTT1JTJyAmJiBjaG9pY2VzW3VzZXJDaG9vc2VdID09ICdQQVBFUicpKSB7XG5cbiAgICAgICAgLy8gbG9zZVxuXG4gICAgICAgIG91dGNvbWUgPSAyO1xuXG4gICAgICAgIGNvbXB1dGVyUG9pbnRzICs9IDE7XG5cbiAgICB9IGVsc2Uge1xuXG4gICAgICAgIC8vIHRpZVxuXG4gICAgICAgIG91dGNvbWUgPSAxO1xuXG4gICAgfVxuXG4gICAgLy8gc2V0dGluZyBnYW1lIHZhcmlhYmxlcyBhZnRlciBtb3ZlXG5cbiAgICByb3VuZHNMZWZ0IC09IDE7XG5cbiAgICByb3VuZFJlc3VsdEVsLmlubmVyVGV4dCA9IGAke291dGNvbWVzW291dGNvbWVdfWA7XG5cbiAgICByb3VuZFJlc3VsdEVsLnN0eWxlLmRpc3BsYXkgPSBcImJsb2NrXCI7XG5cbiAgICB1c2VyUG9pbnRzRWwuaW5uZXJUZXh0ID0gdXNlclBvaW50cztcblxuICAgIGNvbXB1dGVyUG9pbnRzRWwuaW5uZXJUZXh0ID0gY29tcHV0ZXJQb2ludHM7XG5cbiAgICByb3VuZHNMZWZ0RWwuaW5uZXJUZXh0ID0gcm91bmRzTGVmdDtcblxuICAgIGlmIChyb3VuZHNMZWZ0ID09IDApIHtcblxuICAgICAgICAvLyBnYW1lIG92ZXJcblxuICAgICAgICBnYW1lUmVzdWx0RWwuaW5uZXJUZXh0ID0gYCR7b3V0Y29tZXNbdXNlclBvaW50cyA9PSBjb21wdXRlclBvaW50cyA/IDEgOiB1c2VyUG9pbnRzID4gY29tcHV0ZXJQb2ludHMgPyAwIDogMl19YDtcblxuICAgICAgICBnYW1lUmVzdWx0RWwuc3R5bGUuZGlzcGxheSA9IFwiYmxvY2tcIjtcblxuICAgICAgICBnYW1lQ29udGFpbmVyRWwuc3R5bGUuZGlzcGxheSA9IFwibm9uZVwiO1xuXG4gICAgfVxuXG59XG5cbi8vIGJ1dHRvbiBjbGlja1xuXG5yb2NrQnRuRWwuYWRkRXZlbnRMaXN0ZW5lcignY2xpY2snLCB1c2VyQ2hvb3NlKTtcblxucGFwZXJCdG5FbC5hZGRFdmVudExpc3RlbmVyKCdjbGljaycsIHVzZXJDaG9vc2UpO1xuXG5zY2lzc29yQnRuRWwuYWRkRXZlbnRMaXN0ZW5lcignY2xpY2snLCB1c2VyQ2hvb3NlKTtcbiAgIl19</script></head>
+<body>
+  
+
+<label for="game-number">Number of rounds:-</label>
+
+<input type="number" name="game-number" id="game-number" data-ns-test="game-number">
+
+<button id="play-game" data-ns-test="play-game" onclick="playGame()">Play</button>
+
+<div class="game-container" id="game-container">
+
+    <div>
+
+        <button data-ns-test="rock" id="rock" value="0">rock</button>
+
+        <button data-ns-test="paper" id="paper" value="1">paper</button>
+
+        <button data-ns-test="scissors" id="scissors" value="2">scissors</button>
+
+    </div>
+
+    <div>
+
+        Computer choose :-
+
+        <span data-ns-test="computer-choose" id="computer-choose"></span>
+
+    </div>
+
+    <span id="round-result" data-ns-test="round-result">
+
+WON
+
+</span>
+
+    <div>
+
+        User Points :-
+
+        <span data-ns-test="user-points" id="user-points">0</span>
+
+        Computer Points :-
+
+        <span data-ns-test="computer-points" id="computer-points">0</span>
+
+    </div>
+
+    <div>
+
+        Rounds Left :-
+
+        <span data-ns-test="rounds-left" id="rounds-left">NaN</span>
+
+    </div>
+
+</div>
+
+<div id="game-result" data-ns-test="game-result">
+
+    WON
+
+</div>
+  <script type="text/babel">
+    var gameNumberEl = document.getElementById("game-number");
+
+var gameContainerEl = document.getElementById("game-container");
+
+var rockBtnEl = document.getElementById("rock");
+
+var paperBtnEl = document.getElementById("paper");
+
+var scissorBtnEl = document.getElementById("scissors");
+
+var computerChooseEl = document.getElementById("computer-choose");
+
+var roundResultEl = document.getElementById("round-result");
+
+var userPointsEl = document.getElementById("user-points");
+
+var computerPointsEl = document.getElementById("computer-points");
+
+var roundsLeftEl = document.getElementById("rounds-left");
+
+var gameResultEl = document.getElementById("game-result");
+
+const ROCK = 0;
+
+const PAPER = 1;
+
+const SCISSORS = 2;
+
+function playGame() {
+
+    userPoints = 0;
+
+    userPointsEl.innerText = 0;
+
+    computerPoints = 0;
+
+    computerPointsEl.innerText = 0;
+
+    roundsLeft = parseInt(gameNumberEl.value, 10);
+
+    if (roundsLeft < 0) {
+
+        alert("Number of turns cannot be -ve");
+
+    } else {
+
+        roundsLeftEl.innerText = roundsLeft;
+
+        gameContainerEl.style.display = "block";
+
+        gameResultEl.style.display = "none";
+
+    }
+
+}
+
+// game variables
+
+var userPoints = 0;
+
+var computerPoints = 0;
+
+var roundsLeft = parseInt(gameNumberEl.value, 10);
+
+roundsLeftEl.innerText = roundsLeft;
+
+function userChoose(e) {
+
+    if (roundsLeft <= 0) return;
+
+    const choices = ["ROCK", "PAPER", "SCISSORS"];
+
+    const outcomes = ["WON", "TIE", "LOSE"];
+
+    const userChoose = parseInt(e.target.value, 10);
+
+    const computerChoose = Math.floor(Math.random() * 3);
+
+    window.computerChoose = computerChoose
+
+    console.log(window.computerChoose);
+
+    computerChooseEl.innerText = choices[computerChoose];
+
+    var outcome = 1; // [win, tie, loose]
+
+    if ((choices[computerChoose] == 'ROCK' && choices[userChoose] == 'PAPER') || (choices[computerChoose] == 'SCISSORS' && choices[userChoose] == 'ROCK') || (choices[computerChoose] == 'PAPER' && choices[userChoose] == 'SCISSORS')) {
+
+        // use Wins
+
+        outcome = 0;
+
+        userPoints += 1;
+
+    } else if ((choices[computerChoose] == 'PAPER' && choices[userChoose] == 'ROCK') || (choices[computerChoose] == 'ROCK' && choices[userChoose] == 'SCISSORS') || (choices[computerChoose] == 'SCISSORS' && choices[userChoose] == 'PAPER')) {
+
+        // lose
+
+        outcome = 2;
+
+        computerPoints += 1;
+
+    } else {
+
+        // tie
+
+        outcome = 1;
+
+    }
+
+    // setting game variables after move
+
+    roundsLeft -= 1;
+
+    roundResultEl.innerText = `${outcomes[outcome]}`;
+
+    roundResultEl.style.display = "block";
+
+    userPointsEl.innerText = userPoints;
+
+    computerPointsEl.innerText = computerPoints;
+
+    roundsLeftEl.innerText = roundsLeft;
+
+    if (roundsLeft == 0) {
+
+        // game over
+
+        gameResultEl.innerText = `${outcomes[userPoints == computerPoints ? 1 : userPoints > computerPoints ? 0 : 2]}`;
+
+        gameResultEl.style.display = "block";
+
+        gameContainerEl.style.display = "none";
+
+    }
+
+}
+
+// button click
+
+rockBtnEl.addEventListener('click', userChoose);
+
+paperBtnEl.addEventListener('click', userChoose);
+
+scissorBtnEl.addEventListener('click', userChoose);
+  </script>
+
+
+</body></html>
