@@ -35,9 +35,16 @@ export function move(payload){
       payload: payload
    }
 }
-export function killMove(payload){
+export function check(){
    return {
       type: action_type.KILLMOVE,
-      payload: payload
+      // get index of both king from reducer etc
+   }
+}
+
+export function sync(payload){
+   return {
+      type: action_type.SYNC,
+      payload:payload
    }
 }

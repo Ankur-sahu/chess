@@ -8,7 +8,7 @@ const ACTION = require('./src/Actions')
 
 const server = http.createServer(app)
 const io = new Server(server)
-let count = 1
+
 
 const userSocketMap = {} //storing user with its socket id
 function getAllConnectedClients(roodId) {
@@ -64,6 +64,10 @@ io.on('connection', (socket) => {
             type })//sending to all room members
     })
     
+    socket.on(ACTION.SYNC_CODE,({blocks, turn, game, killedP, lastStep , socketId }) =>{
+        console.log("listening sync",socketId)
+        io.to(socketId).emit(ACTION.SYNC_CODE,{blocks, turn, game, killedP, lastStep})
+    })
     socket.on(ACTION.DISCONNECTING, () => {//when someone close or chamge tab
         //[...] converting values to array
         const rooms = [...socket.rooms] //get all room from socket from perticular user that is disconnecting

@@ -259,24 +259,6 @@ const createBoard = ()=>{
                 else {
                     pce = "";
                 }
-                // if (id===36){
-                //   pce= {pieceId: 65,
-                //     img:whiteKing,
-                //     player: 2
-                //   };
-                // }
-                if (id ===21){
-                  pce={pieceId : 53,
-                    img: blackpawn,
-                    player:2
-                  }
-                }
-                // if(id ===33){
-                //    pce= {pieceId: 67,
-                //     img:blckHAti,
-                //     player: 1
-                //   };
-                // } 
                 let obj = {
                     id: id, //for block id
                     backColor: bgColor, // block color
@@ -285,7 +267,8 @@ const createBoard = ()=>{
                     opponentPiece: false,//which piece have in oppe
                     routes: false,// path acccording to piece
                     previousStep: false,//prevstep of every piece
-                    currentStep: false
+                    currentStep: false,
+                    check:false
                 }
                 tempArr.push(obj);
             }

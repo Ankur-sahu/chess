@@ -2,7 +2,7 @@
 
 const bgColor = (actionInitial)=>{
     // console.log(actionInitial)
-    if(actionInitial.opponentPiece){
+    if(actionInitial.opponentPiece || actionInitial.check){
         return "opponent"
     }else if(actionInitial.routes || actionInitial.active){
         return "route"

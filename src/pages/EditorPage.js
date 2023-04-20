@@ -3,7 +3,7 @@ import { useLocation, useNavigate, Navigate, useParams } from 'react-router-dom'
 import ACTIONS from '../Actions'
 import { initSocket } from '../socket'
 import { useDispatch, useSelector } from 'react-redux'
-import { startGame, makeTurn } from '../Redux/Actions'
+import { startGame, sync } from '../Redux/Actions'
 import ChessBlock from '../components/ChessBlock'
 import createBoard from '../general_fn/CreateBoard'
 import { move } from '../Redux/Actions'
@@ -17,9 +17,13 @@ function EditorPage() {
     const { roomId } = useParams()
 
     const [blockSelected, setBlockSelected] = useState(null);
+    const [otherSocketP, setOtherSocketP] = useState(null)
     const blocks = useSelector((state) => state.chess.actionInitial);
     const turn = useSelector((state) => state.chess.turn);
     const killedP = useSelector((state) => state.chess.killed);
+    const game = useSelector((state) => state.chess.game);
+    const lastStep = useSelector((state) => state.chess.lastStep);
+
 
     const dispatch = useDispatch()
     const player = localStorage.getItem("player")
@@ -35,7 +39,16 @@ function EditorPage() {
         }
 
     }
-
+    useEffect(() => {
+        if (game) {
+            if (Number(player) === game) {
+                alert("You Won!")
+            } else {
+                alert("You Lost")
+            }
+            reactNavigator("/")
+        }
+    }, [game])
     useEffect(() => {
         const init = async () => {
             console.log("1st useEffect")
@@ -64,13 +77,14 @@ function EditorPage() {
             //listening code sync
 
             //listening from socket server on joined user
-            socketRef.current.on(ACTIONS.JOINED, ({ clients, username }) => {
+            socketRef.current.on(ACTIONS.JOINED, ({ clients, username, socketId }) => {
+
+                console.log("JOINED", clients)
                 if (username !== getFromNavigate.state.userName) {
+                    setOtherSocketP(socketId)
                     alert(`new user joined ${username}`)
                 }
                 setClient(clients)
-                console.log("JOINED", clients)
-
             })
             //listening for disconnection of user
             socketRef.current.on(ACTIONS.DISCONNECTED, ({ socketId, username }) => {
@@ -91,25 +105,60 @@ function EditorPage() {
                 socketRef.current.disconnect()
                 socketRef.current.off(ACTIONS.JOINED)//unsubscribing to socket
                 socketRef.current.off(ACTIONS.DISCONNECTED)//unsubscribing to socket
+                socketRef.current.off(ACTIONS.NOSPACE)//unsubscribing to socket
+
 
             }
 
         }
     }, [])
-    useEffect(()=>{
+
+    useEffect(() => {
+        console.log("last step", lastStep.prev,otherSocketP)
+        if (lastStep.prev) {
+            console.log("sending something", blocks, turn, killedP)
+            socketRef.current?.emit(ACTIONS.SYNC_CODE, {// join request that must be recieved by server
+                blocks,
+                turn,
+                killedP,
+                game,
+                lastStep,
+                socketId:otherSocketP
+            })
+        }
+        return ()=>{
+            socketRef.current.off(ACTIONS.SYNC_CODE)//unsubscribing to socket
+
+        }
+    }, [otherSocketP])
+    useEffect(() => {
         // console.log("getting from server")
         //listening from server
-        socketRef.current?.on(ACTIONS.CODE_CHANGE,({blockSelected,
-          index,
-          type})=>{
-            dispatch(move({blockSelected,index,type}))
-            console.log(blockSelected,"code change msg reieved",type)
+        socketRef.current?.on(ACTIONS.CODE_CHANGE, ({ blockSelected,
+            index,
+            type }) => {
+            dispatch(move({ blockSelected, index, type }))
+            console.log(blockSelected, "code change msg reieved", type)
         })
-      
-        return () =>{
+
+        return () => {
             socketRef.current?.off(ACTIONS.CODE_CHANGE)
+            socketRef.current?.off(ACTIONS.SYNC_CODE)
+
         }
-      },[socketRef.current])
+    }, [socketRef.current])
+
+    useEffect(()=>{
+        socketRef.current?.on(ACTIONS.SYNC_CODE, ({ blocks, turn, game, killedP, lastStep }) => {
+            dispatch(sync({ blocks, turn, game, killedP, lastStep }))
+            console.log("code sync msg reieved")
+        })
+
+        return () => {
+            socketRef.current?.off(ACTIONS.SYNC_CODE)
+
+        }
+    },[socketRef.current])
 
     console.log(player, " s turn", turn)
     const [client, setClient] = useState([
@@ -153,16 +202,16 @@ function EditorPage() {
         }
         return false
     }
-    
+
 
     return (
         <div className='main-container'>
             <div className='player-Info'>
-                
-                    {killedP.map((piece,index)=>(
-                        <img alt="pieceImg" src={piece.img} key={index} />
-                    ))}
-               
+
+                {killedP.map((piece, index) => (
+                    <img alt="pieceImg" src={piece.img} key={index} />
+                ))}
+
             </div>
 
             <div className={Number(player) === 2 ? "App" : "rotate-App"}>

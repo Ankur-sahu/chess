@@ -1,16 +1,20 @@
 
-const Horse = (index, actionInitial,type) => {
-    const leftArr = [0, 8, 24, 32, 40, 48, 56]
+const Horse = (index, actionInitial,type,check) => {
+    const leftArr = [0, 8, 16, 24, 32, 40, 48, 56]
     const rightArr = [7, 15, 23, 31, 39, 47, 55]
     let tempTopLeftIndex = index
     tempTopLeftIndex = tempTopLeftIndex - 17;
     if (tempTopLeftIndex > 0) {
         if (!rightArr.includes(tempTopLeftIndex)) {
-            if (!actionInitial[tempTopLeftIndex].piece) {
+            if (!Object.hasOwn(actionInitial[tempTopLeftIndex].piece,"pieceId")) {
                 actionInitial[tempTopLeftIndex].routes = type;
                 console.log('actionInitial[tempTopLeftIndex].piece topleft', actionInitial[tempTopLeftIndex].id)
             } else {
                 if (actionInitial[tempTopLeftIndex].piece.player !== actionInitial[index].piece.player) {
+                    if(check && (actionInitial[tempTopLeftIndex].piece.pieceId ===61 || actionInitial[tempTopLeftIndex].piece.pieceId ===5)){
+                        actionInitial[tempTopLeftIndex].check = check
+                        return
+                    }
                     actionInitial[tempTopLeftIndex].routes = type;
                     actionInitial[tempTopLeftIndex].opponentPiece = type;
                     console.log('opponent piece topleft side')
@@ -28,11 +32,15 @@ const Horse = (index, actionInitial,type) => {
     tempTopRightIndex = tempTopRightIndex - 15;
     if (tempTopRightIndex > 0) {
         if (!leftArr.includes(tempTopRightIndex)) {
-            if (!actionInitial[tempTopRightIndex].piece) {
+            if (!Object.hasOwn(actionInitial[tempTopRightIndex].piece,"pieceId")) {
                 actionInitial[tempTopRightIndex].routes = type;
                 console.log('actionInitial[tempTopRightIndex].piece topright', actionInitial[tempTopRightIndex].id)
             } else {
                 if (actionInitial[tempTopRightIndex].piece.player !== actionInitial[index].piece.player) {
+                    if(check && (actionInitial[tempTopRightIndex].piece.pieceId ===61 || actionInitial[tempTopRightIndex].piece.pieceId ===5)){
+                        actionInitial[tempTopRightIndex].check = check
+                        return
+                    }
                     actionInitial[tempTopRightIndex].routes = type;
                     actionInitial[tempTopRightIndex].opponentPiece = type;
                     console.log('opponent piece topright side')
@@ -52,11 +60,15 @@ const Horse = (index, actionInitial,type) => {
     tempBottomLeftIndex = tempBottomLeftIndex + 15;
     if (tempBottomLeftIndex < 63) {
         if (!rightArr.includes(tempBottomLeftIndex)) {
-            if (!actionInitial[tempBottomLeftIndex].piece) {
+            if (!Object.hasOwn(actionInitial[tempBottomLeftIndex].piece,"pieceId")) {
                 actionInitial[tempBottomLeftIndex].routes = type;
                 console.log('actionInitial[tempBottomLeftIndex].piece bottomLeft', actionInitial[tempBottomLeftIndex].id)
             } else {
                 if (actionInitial[tempBottomLeftIndex].piece.player !== actionInitial[index].piece.player) {
+                    if(check && (actionInitial[tempBottomLeftIndex].piece.pieceId ===61 || actionInitial[tempBottomLeftIndex].piece.pieceId ===5)){
+                        actionInitial[tempBottomLeftIndex].check = check
+                        return
+                    }
                     actionInitial[tempBottomLeftIndex].routes = type;
                     actionInitial[tempBottomLeftIndex].opponentPiece = type;
                     console.log('opponent piece bottomLeft side')
@@ -76,11 +88,15 @@ const Horse = (index, actionInitial,type) => {
     tempBottomRightIndex = tempBottomRightIndex + 17;
     if (tempBottomRightIndex < 63) {
         if (!leftArr.includes(tempBottomRightIndex)) {
-            if (!actionInitial[tempBottomRightIndex].piece) {
+            if (!Object.hasOwn(actionInitial[tempBottomRightIndex].piece,"pieceId")) {
                 actionInitial[tempBottomRightIndex].routes = type;
                 console.log('actionInitial[tempBottomRightIndex].piece bottomLeft', actionInitial[tempBottomRightIndex].id)
             } else {
                 if (actionInitial[tempBottomRightIndex].piece.player !== actionInitial[index].piece.player) {
+                    if(check && (actionInitial[tempBottomRightIndex].piece.pieceId ===61 || actionInitial[tempBottomRightIndex].piece.pieceId ===5)){
+                        actionInitial[tempBottomRightIndex].check = check
+                        return
+                    }
                     actionInitial[tempBottomRightIndex].routes = type;
                     actionInitial[tempBottomRightIndex].opponentPiece = type;
                     console.log('opponent piece bottomLeft side')
@@ -101,11 +117,15 @@ const Horse = (index, actionInitial,type) => {
         tempLeftBottomIndex = tempLeftBottomIndex + 6;
         if (tempLeftBottomIndex < 63) {
             if (!rightArr.includes(tempLeftBottomIndex)) {
-                if (!actionInitial[tempLeftBottomIndex].piece) {
+                if (!Object.hasOwn(actionInitial[tempLeftBottomIndex].piece,"pieceId")) {
                     actionInitial[tempLeftBottomIndex].routes = type;
                     console.log('actionInitial[tempLeftBottomIndex].piece LeftBottom', actionInitial[tempLeftBottomIndex].id)
                 } else {
                     if (actionInitial[tempLeftBottomIndex].piece.player !== actionInitial[index].piece.player) {
+                        if(check && (actionInitial[tempLeftBottomIndex].piece.pieceId ===61 || actionInitial[tempLeftBottomIndex].piece.pieceId ===5)){
+                            actionInitial[tempLeftBottomIndex].check = check
+                            return
+                        }
                         actionInitial[tempLeftBottomIndex].routes = type;
                         actionInitial[tempLeftBottomIndex].opponentPiece = type;
                         console.log('opponent piece LeftBottom side')
@@ -128,12 +148,16 @@ const Horse = (index, actionInitial,type) => {
          tempLeftTopIndex = tempLeftTopIndex - 10;
          if (tempLeftTopIndex > 0) {
              if (!rightArr.includes(tempLeftTopIndex)) {
-                 if (!actionInitial[tempLeftTopIndex].piece) {
+                 if (!Object.hasOwn(actionInitial[tempLeftTopIndex].piece,"pieceId")) {
                      actionInitial[tempLeftTopIndex].routes = type;
                      console.log('actionInitial[tempLeftTopIndex].piece LeftBottom', actionInitial[tempLeftTopIndex].id)
                  } else {
                      if (actionInitial[tempLeftTopIndex].piece.player !== actionInitial[index].piece.player) {
-                         actionInitial[tempLeftTopIndex].routes = type;
+                        if(check && (actionInitial[tempLeftTopIndex].piece.pieceId ===61 || actionInitial[tempLeftTopIndex].piece.pieceId ===5)){
+                            actionInitial[tempLeftTopIndex].check = check
+                            return
+                        } 
+                        actionInitial[tempLeftTopIndex].routes = type;
                          actionInitial[tempLeftTopIndex].opponentPiece = type;
                          console.log('opponent piece LeftBottom side')
                      } else {
@@ -155,11 +179,15 @@ const Horse = (index, actionInitial,type) => {
         tempRightBottomIndex = tempRightBottomIndex + 10;
         if (tempRightBottomIndex < 63) {
             if (!leftArr.includes(tempRightBottomIndex)) {
-                if (!actionInitial[tempRightBottomIndex].piece) {
+                if (!Object.hasOwn(actionInitial[tempRightBottomIndex].piece,"pieceId")) {
                     actionInitial[tempRightBottomIndex].routes = type;
                     console.log('actionInitial[tempRightBottomIndex].piece rightBottom', actionInitial[tempRightBottomIndex].id)
                 } else {
                     if (actionInitial[tempRightBottomIndex].piece.player !== actionInitial[index].piece.player) {
+                        if(check && (actionInitial[tempRightBottomIndex].piece.pieceId ===61 || actionInitial[tempRightBottomIndex].piece.pieceId ===5)){
+                            actionInitial[tempRightBottomIndex].check = check
+                            return
+                        } 
                         actionInitial[tempRightBottomIndex].routes = type;
                         actionInitial[tempRightBottomIndex].opponentPiece = type;
                         console.log('opponent piece rightBottom side')
@@ -182,11 +210,15 @@ const Horse = (index, actionInitial,type) => {
          tempRightTopIndex = tempRightTopIndex - 6;
          if (tempRightTopIndex > 0) {
              if (!leftArr.includes(tempRightTopIndex)) {
-                 if (!actionInitial[tempRightTopIndex].piece) {
+                 if (!Object.hasOwn(actionInitial[tempRightTopIndex].piece,"pieceId")) {
                      actionInitial[tempRightTopIndex].routes = type;
                      console.log('actionInitial[tempRightTopIndex].piece rightTop', actionInitial[tempRightTopIndex].id)
                  } else {
                      if (actionInitial[tempRightTopIndex].piece.player !== actionInitial[index].piece.player) {
+                        if(check && (actionInitial[tempRightTopIndex].piece.pieceId ===61 || actionInitial[tempRightTopIndex].piece.pieceId ===5)){
+                            actionInitial[tempRightTopIndex].check = check
+                            return
+                        }
                          actionInitial[tempRightTopIndex].routes = type;
                          actionInitial[tempRightTopIndex].opponentPiece = type;
                          console.log('opponent piece rightTop side')

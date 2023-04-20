@@ -4,7 +4,8 @@ const action_type ={
     TURN:"TURN",
     BLOCKUNSELECTED:"BLOCKUNSELECTED",
     MOVE:"MOVE",
-    KILLMOVE:"KILLMOVE"
+    CHECK:"CHECK",
+    SYNC:"SYNC"
 }
 
 export default action_type;
