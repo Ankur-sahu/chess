@@ -5,7 +5,8 @@ const action_type ={
     BLOCKUNSELECTED:"BLOCKUNSELECTED",
     MOVE:"MOVE",
     CHECK:"CHECK",
-    SYNC:"SYNC"
+    SYNC:"SYNC",
+    RESETGAME:"RESETGAME"
 }
 
 export default action_type;

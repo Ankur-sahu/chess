@@ -1,57 +1,60 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-
+import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
+import createBoard from '../general_fn/CreateBoard';
+import { startGame } from '../Redux/Actions';
 function Home() {
     const navigate = useNavigate()
     const [roomId, setRoomId] = useState()
-    let first = false
+    const dispatch = useDispatch()
 
+    function chesStart() {
+        const tempArr = createBoard()
+        dispatch(startGame(tempArr))
+    }
 
-    const createNewRoom =(e)=>{
+    const createNewRoom = (e) => {
         e.preventDefault()
-        const roomId = Math.floor(Math.random()*10000)
+        const roomId = Math.floor(Math.random() * 10000)
         setRoomId(roomId)
-        first = true
-        console.log(roomId)
-        navigate(`/editor/${roomId}`,{
-            state:{
-                userName:1,
-                roomId,
-                first
+        chesStart()
+        navigate(`/editor/${roomId}`, {
+            state: {
+                userName: 1,
+                roomId
             }
         })
-        localStorage.setItem("player",1)
+        localStorage.setItem("player", 1)
     }
-    const joinRoom =(e)=>{
+    const joinRoom = (e) => {
         e.preventDefault()
-        if(!roomId ){
-            alert("Game Id required")
+        if (!roomId) {
+            toast.error("Room ID required!", { autoClose: 3000 })
             return
         }
-        navigate(`/editor/${roomId}`,{
-            state:{
-                userName:2,
-                roomId,
-                first
+        chesStart()
+        navigate(`/editor/${roomId}`, {
+            state: {
+                userName: 2,
+                roomId
             }
         })
-        localStorage.setItem("player",2)
+        localStorage.setItem("player", 2)
     }
-  return (
-    <div className='starting-page'>
-        <form action="" method="post">
-        <input type="number" placeholder='Game Id'
-        onChange={(e) => setRoomId(e.target.value)} 
-        value={roomId} 
-        />
-        
-        
-        <button type="submit" onClick={joinRoom}>Join Game</button>
-        <span>Or</span>
-        <button onClick={createNewRoom}>New Game</button>
-    </form>
-    </div>
-  );
+    return (
+        <div className='starting-page'>
+            <form action="" method="post">
+                <input type="number" placeholder='Game Id'
+                    onChange={(e) => setRoomId(e.target.value)}
+                    value={roomId}
+                />
+                <button type="submit" onClick={joinRoom}>Join Game</button>
+                <span>Or</span>
+                <button onClick={createNewRoom}>New Game</button>
+            </form>
+        </div>
+    );
 }
 
 export default Home;

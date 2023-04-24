@@ -3,19 +3,37 @@
   margin: 0;
   box-sizing: border-box;
 }
-body{
+
+.starting-page{
+  width: 100%;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-image: url(./Images/cover.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 .starting-page>form{
+  width: 30%;
+  height: 200px;
+  padding: 10px;
   display:  flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 5px;
+  border: 1px solid white;
+  border-radius: 10px;
+  
 }
-.starting-page>form>button{
-  width: 100%;
+.starting-page>form>input,.starting-page>form>button{
+  width: 60%;
+  height: 30px;
+  border-radius: 5px;
+}
+.starting-page>form>span{
+  color: white;
 }
 .main-container{
   display: flex;
@@ -23,9 +41,12 @@ body{
   height: 600px;
 }
 .player-Info,.killed-piece-container{
+  
   width: 250px;
   height: 100%;
-  border: 1px solid red;
+  margin-top: 50px;
+  margin-left: 10px;
+  
 }
 
 .App{
@@ -81,7 +102,7 @@ body{
 
 .route{
   /* background-color: rgb(84, 180, 53); */
-  background-color: rgb(158, 101, 158);
+  background-color: rgb(156, 185, 51);
 
   border: 1px solid black;
   
@@ -98,10 +119,16 @@ box-shadow: rgb(161, 90, 90);
 }
 .player-Info{
   display: grid;
-  grid-template: 50% 50%/ 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5%;
-  border: 2px solid black;
+  grid-template: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10% 10% 10% 10% 10% 10% 10% /20% 20% 20% 20%;
+  
 }
 .player-Info>img{
-  width: 200%;
-  height: 20%;
+  width: 100%;
+  height: 100%;
+}
+.killed-piece-container>div{
+  color: gray;
+}
+.killed-piece-container>div>span{
+  color: orangered;
 }
