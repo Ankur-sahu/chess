@@ -2,7 +2,6 @@ import opponentPiece from "./opponentPiece";
 import { leftArr, rightArr } from "./sides";
 
 function RightFunc(index, actionInitial, player) {
-    // let initialStage = 8
     if (player === 1) {
         if (index + 7 > 64) {
             return false;
@@ -11,28 +10,6 @@ function RightFunc(index, actionInitial, player) {
             return false
         }
         return true
-        // if (actionInitial[index + 7].id === initialStage) {
-        //     return false;
-        // } else if (actionInitial[index + 7].id === initialStage * 2) {
-        //     return false;
-        // } else if (actionInitial[index + 7].id === initialStage * 3) {
-        //     return false;
-        // } else if (actionInitial[index + 7].id === initialStage * 4) {
-        //     return false;
-        // } else if (actionInitial[index + 7].id === initialStage * 5) {
-        //     return false;
-        // } else if (actionInitial[index + 7].id === initialStage * 6) {
-        //     return false;
-        // } else if (actionInitial[index + 7].id === initialStage * 7) {
-        //     return false;
-        // } else if (actionInitial[index + 7].id === initialStage * 8) {
-        //     return false;
-        // } else if (actionInitial[index + 7].id > 64) {
-        //     return false;
-        // } else {
-        //     return true;
-        // }
-
     } else if (player === 2) {
         if (index - 7 < 0) {
             return false;
@@ -41,33 +18,10 @@ function RightFunc(index, actionInitial, player) {
             return false
         }
         return true
-        // if (actionInitial[index - 7].id === 1 + (initialStage * 0)) {
-        //     return false;
-        // } else if (actionInitial[index - 7].id === 1 + (initialStage * 1)) {
-        //     return false;
-        // } else if (actionInitial[index - 7].id === 1 + (initialStage * 2)) {
-        //     return false;
-        // } else if (actionInitial[index - 7].id === 1 + (initialStage * 3)) {
-        //     return false;
-        // } else if (actionInitial[index - 7].id === 1 + (initialStage * 4)) {
-        //     return false;
-        // } else if (actionInitial[index - 7].id === 1 + (initialStage * 5)) {
-        //     return false;
-        // } else if (actionInitial[index - 7].id === 1 + (initialStage * 6)) {
-        //     return false;
-        // } else if (actionInitial[index - 7].id === 1 + (initialStage * 7)) {
-        //     return false;
-        // } else if (actionInitial[index - 7].id < 0) {
-        //     return false;
-        // } else {
-        //     return true;
-        // }
     }
-
 }
 
 function leftFunc(index, actionInitial, player) {
-    let initialStage = 8;
     if (player === 1) {
         if (index + 9 > 64) {
             return false;
@@ -76,25 +30,6 @@ function leftFunc(index, actionInitial, player) {
             return false
         }
         return true
-        // if (actionInitial[index + 9].id === 1 + (initialStage * 0)) {
-        //     return false;
-        // } else if (actionInitial[index + 9].id === 1 + (initialStage * 1)) {
-        //     return false;
-        // } else if (actionInitial[index + 9].id === 1 + (initialStage * 2)) {
-        //     return false;
-        // } else if (actionInitial[index + 9].id === 1 + (initialStage * 3)) {
-        //     return false;
-        // } else if (actionInitial[index + 9].id === 1 + (initialStage * 4)) {
-        //     return false;
-        // } else if (actionInitial[index + 9].id === 1 + (initialStage * 5)) {
-        //     return false;
-        // } else if (actionInitial[index + 9].id === 1 + (initialStage * 6)) {
-        //     return false;
-        // } else if (actionInitial[index + 9].id === 1 + (initialStage * 7)) {
-        //     return false;
-        // } else {
-        //     return true;
-        // }
     } else if (player === 2) {
         if (index - 9 < 0) {
             return false;
@@ -103,25 +38,6 @@ function leftFunc(index, actionInitial, player) {
             return false
         }
         return true
-        // if (actionInitial[index - 9].id === initialStage * 1) {
-        //     return false;
-        // } else if (actionInitial[index - 9].id === initialStage * 2) {
-        //     return false;
-        // } else if (actionInitial[index - 9].id === initialStage * 3) {
-        //     return false;
-        // } else if (actionInitial[index - 9].id === initialStage * 4) {
-        //     return false;
-        // } else if (actionInitial[index - 9].id === initialStage * 5) {
-        //     return false;
-        // } else if (actionInitial[index - 9].id === initialStage * 6) {
-        //     return false;
-        // } else if (actionInitial[index - 9].id === initialStage * 7) {
-        //     return false;
-        // } else if (actionInitial[index - 9].id === initialStage * 8) {
-        //     return false;
-        // } else {
-        //     return true;
-        // }
     }
 }
 
