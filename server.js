@@ -2,9 +2,14 @@ const express = require('express');
 const app = express();
 const http = require('http')
 const { Server } = require('socket.io')
-const ACTION = require('./src/Actions')
+const ACTION = require('./src/Actions');
+const path = require('path');
 const server = http.createServer(app)
 const io = new Server(server)
+app.use(express.static('build'))
+app.use((req,res,next)=>{
+    res.sendFile(path.join(__dirname,'build','index.html'))
+})
 const userSocketMap = {} //storing user with its socket id
 function getAllConnectedClients(roodId) {
     return Array.from(io.sockets.adapter.rooms.get(roodId) || []).map(

@@ -55,7 +55,6 @@ function ChessBlock({ checkTurn, setBlockSelected, dispatch, blockSelected, data
     <>
       <div onClick={() => pieceSelected(index)} id="container" className={bgColor(data)}>
         {data.piece.img && <img alt="pieceImg" src={data.piece.img} />}
-        <span className='spandiv'>{data.id}</span>
       </div>
     </>
   )
