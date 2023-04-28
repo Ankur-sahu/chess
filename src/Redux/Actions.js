@@ -34,6 +34,12 @@ export function move(payload){
    }
 }
 
+export function timeUp(){
+   return {
+      type: action_type.TIMEUP
+   }
+}
+
 export function check(){
    return {
       type: action_type.KILLMOVE,

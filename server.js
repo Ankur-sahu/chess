@@ -22,6 +22,7 @@ function getAllConnectedClients(roodId) {
 }
 
 io.on('connection', (socket) => {
+    console.log("socket connect req")
     socket.on(ACTION.JOIN, ({ roomId, username }) => {
         userSocketMap[socket.id] = username
         socket.join(roomId)

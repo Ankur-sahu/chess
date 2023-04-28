@@ -6,7 +6,8 @@ const action_type ={
     MOVE:"MOVE",
     CHECK:"CHECK",
     SYNC:"SYNC",
-    RESETGAME:"RESETGAME"
+    RESETGAME:"RESETGAME",
+    TIMEUP:"TIMEUP"
 }
 
 export default action_type;

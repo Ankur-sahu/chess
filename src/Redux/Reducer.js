@@ -50,7 +50,11 @@ export const chessReducer = (state = initialState, action) => {
             return {
                 ...state, actionInitial: [...unTempArr]
             }
-
+        case action_type.TIMEUP:
+            if(state.turn){
+                return{...state,game:2}
+            }
+            return{...state,game:1}
         case action_type.MOVE:
             let moveArr = [...state.actionInitial]
             let killedP = [...state.killed]

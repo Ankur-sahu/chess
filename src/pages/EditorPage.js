@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 import { resetGame, sync } from '../Redux/Actions'
 import ChessBlock from '../components/ChessBlock'
 import { move } from '../Redux/Actions'
+import Timer from '../components/Timer'
 
 function EditorPage() {
     //initializing socket connection
@@ -16,6 +17,7 @@ function EditorPage() {
     const { roomId } = useParams()
     const [blockSelected, setBlockSelected] = useState(null)
     const [otherSocketP, setOtherSocketP] = useState(null)
+    const [resetTimer, setResetTimer] = useState(false)
     const blocks = useSelector((state) => state.chess.actionInitial)
     const turn = useSelector((state) => state.chess.turn)
     const killedP = useSelector((state) => state.chess.killed)
@@ -45,7 +47,6 @@ function EditorPage() {
 
     useEffect(() => {
         const init = async () => {
-            console.log("1st useEffect")
             socketRef.current = await initSocket() // initalized connection
             socketRef.current.on('connection_error', (err) => handleErrors(err))
             socketRef.current.on('connection_failde', (err) => handleErrors(err))
@@ -101,9 +102,7 @@ function EditorPage() {
     }, [])
 
     useEffect(() => {
-        console.log("last step", lastStep.prev, otherSocketP)
         if (lastStep.prev) {
-            console.log("sending something", blocks, turn, killedP)
             socketRef.current?.emit(ACTIONS.SYNC_CODE, {
                 blocks,
                 turn,
@@ -123,6 +122,7 @@ function EditorPage() {
             index,
             type }) => {
             dispatch(move({ blockSelected, index, type }))
+            setResetTimer(resetTimer => !resetTimer)
         })
         return () => {
             socketRef.current?.off(ACTIONS.CODE_CHANGE)
@@ -140,10 +140,8 @@ function EditorPage() {
         }
     }, [socketRef.current])
     const [client, setClient] = useState([
-        { socketId: 1, username: "ankur" },
-        { socketId: 2, username: "ankur's friend" }
+        { socketId: 1, username: "ankur" }
     ])
-    console.log(client)
     const copyRoomId = async () => {
         try {
             await navigator.clipboard.writeText(roomId)
@@ -182,7 +180,7 @@ function EditorPage() {
                 ))}
             </div>
             <div className={Number(player) === 2 ? "App" : "rotate-App"}>
-                {blocks.map((data, index) => <ChessBlock blocks={blocks} checkTurn={checkTurn} socketRef={socketRef} roomId={roomId} key={index} dispatch={dispatch} setBlockSelected={setBlockSelected}
+                {blocks.map((data, index) => <ChessBlock blocks={blocks} checkTurn={checkTurn} socketRef={socketRef} roomId={roomId} key={index} setBlockSelected={setBlockSelected}
                     blockSelected={blockSelected} data={data} index={index} />)}
             </div>
             <div className='killed-piece-container' >
@@ -194,6 +192,10 @@ function EditorPage() {
                 <span>
                     {turn ? `Player : 1's trun` : `Player : 2's trun`}
                 </span>
+                <div>
+                    {client.length > 1 && <Timer reset={resetTimer} />}
+
+                </div>
             </div>
         </div>
     );

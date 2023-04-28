@@ -2,7 +2,9 @@ import React from 'react'
 import { selectPiece, unselectPiece } from '../Redux/Actions'
 import bgColor from '../PieceAction/BgColor'
 import ACTIONS from "../Actions"
-function ChessBlock({ checkTurn, setBlockSelected, dispatch, blockSelected, data, index, socketRef, roomId, blocks }) {
+import { useDispatch } from 'react-redux'
+function ChessBlock({ checkTurn, setBlockSelected, blockSelected, data, index, socketRef, roomId, blocks }) {
+  const dispatch = useDispatch()
   const sendMsg = (blockSelected, index, type) => {
     socketRef.current.emit(ACTIONS.CODE_CHANGE, {
       roomId,
