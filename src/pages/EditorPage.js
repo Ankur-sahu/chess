@@ -25,25 +25,6 @@ function EditorPage() {
     const lastStep = useSelector((state) => state.chess.lastStep)
     const dispatch = useDispatch()
     const player = localStorage.getItem("player")
-    useEffect(() => {
-        if (game) {
-            if (Number(player) === game) {
-                toast.success('You Won!', {
-                    position: "top-center",
-                    autoClose: 3000,
-                });
-            } else {
-                toast.error('You Lost!', {
-                    position: "top-center",
-                    autoClose: 3000,
-
-                });
-            }
-            localStorage.removeItem("player")
-            dispatch(resetGame())
-            reactNavigator("/")
-        }
-    }, [game])
 
     useEffect(() => {
         const init = async () => {
@@ -100,6 +81,27 @@ function EditorPage() {
             }
         }
     }, [])
+    
+    useEffect(() => {
+        if (game) {
+            if (Number(player) === game) {
+                toast.success('You Won!', {
+                    position: "top-center",
+                    autoClose: 3000,
+                });
+            } else {
+                toast.error('You Lost!', {
+                    position: "top-center",
+                    autoClose: 3000,
+
+                });
+            }
+            localStorage.removeItem("player")
+            dispatch(resetGame())
+            reactNavigator("/")
+        }
+    }, [game])
+
 
     useEffect(() => {
         if (lastStep.prev) {

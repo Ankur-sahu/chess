@@ -3,6 +3,7 @@ import { leftArr, rightArr } from "./sides";
 
 const Hathi = (index, actionInitial, type, check) => {
     //checking for left block
+
     let templeftindex = index
     while (!leftArr.includes(templeftindex)) {
         templeftindex--
@@ -14,6 +15,8 @@ const Hathi = (index, actionInitial, type, check) => {
         } else {
             if (actionInitial[templeftindex].piece.player !== actionInitial[index].piece.player) {
                 opponentPiece(templeftindex, actionInitial, type, check)
+                break
+            } else {
                 break
             }
         }
@@ -30,6 +33,8 @@ const Hathi = (index, actionInitial, type, check) => {
         } else {
             if (actionInitial[tempRightIndex].piece.player !== actionInitial[index].piece.player) {
                 opponentPiece(tempRightIndex, actionInitial, type, check)
+                break
+            } else {
                 break
             }
         }
@@ -48,6 +53,8 @@ const Hathi = (index, actionInitial, type, check) => {
             if (actionInitial[tempTopIndex].piece.player !== actionInitial[index].piece.player) {
                 opponentPiece(tempTopIndex, actionInitial, type, check)
                 break
+            } else {
+                break
             }
         }
     }
@@ -64,6 +71,8 @@ const Hathi = (index, actionInitial, type, check) => {
         } else {
             if (actionInitial[tempBottomIndex].piece.player !== actionInitial[index].piece.player) {
                 opponentPiece(tempBottomIndex, actionInitial, type, check)
+                break
+            } else {
                 break
             }
         }

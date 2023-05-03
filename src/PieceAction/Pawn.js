@@ -6,7 +6,7 @@ function RightFunc(index, actionInitial, player) {
         if (index + 7 > 64) {
             return false;
         }
-        if(rightArr.includes(actionInitial[index+7])){
+        if (rightArr.includes(actionInitial[index + 7])) {
             return false
         }
         return true
@@ -14,7 +14,7 @@ function RightFunc(index, actionInitial, player) {
         if (index - 7 < 0) {
             return false;
         }
-        if(leftArr.includes(actionInitial[index-7])){
+        if (leftArr.includes(actionInitial[index - 7])) {
             return false
         }
         return true
@@ -26,7 +26,7 @@ function leftFunc(index, actionInitial, player) {
         if (index + 9 > 64) {
             return false;
         }
-        if(leftArr.includes(actionInitial[index+9])){
+        if (leftArr.includes(actionInitial[index + 9])) {
             return false
         }
         return true
@@ -34,7 +34,7 @@ function leftFunc(index, actionInitial, player) {
         if (index - 9 < 0) {
             return false;
         }
-        if(rightArr.includes(actionInitial[index-9])){
+        if (rightArr.includes(actionInitial[index - 9])) {
             return false
         }
         return true

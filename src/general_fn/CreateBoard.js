@@ -44,15 +44,16 @@ const createBoard = ()=>{
                 }
                 else if (id === 4) {
                     pce = {
-                        pieceId: 4,
-                        img: whiteWazir,
+                        pieceId: 5,
+                        img: whiteKing,
                         player: 1
                     };
                 }
                 else if (id === 5) {
+                    
                     pce = {
-                        pieceId: 5,
-                        img: whiteKing,
+                        pieceId: 4,
+                        img: whiteWazir,
                         player: 1
                     };
                 }
@@ -146,14 +147,15 @@ const createBoard = ()=>{
                     };
                 }else if (id === 61) {
                     pce = {
-                        pieceId: 61,
-                        img: blackKing,
+                        pieceId: 60,
+                        img: blackWazir,
                         player: 2
                     };
                 }else if (id === 60) {
+                    
                     pce = {
-                        pieceId: 60,
-                        img: blackWazir,
+                        pieceId: 61,
+                        img: blackKing,
                         player: 2
                     };
                 }else if (id === 59) {
