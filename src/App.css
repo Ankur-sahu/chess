@@ -1,10 +1,10 @@
-*{
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
 
-.starting-page{
+.starting-page {
   width: 100%;
   height: 100vh;
   display: flex;
@@ -14,121 +14,166 @@
   background-size: cover;
   background-repeat: no-repeat;
 }
-.starting-page>form{
+
+.starting-page>form {
   width: 30%;
   height: 200px;
   padding: 10px;
-  display:  flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 5px;
   border: 1px solid white;
   border-radius: 10px;
-  
+
 }
-.starting-page>form>input,.starting-page>form>button{
+
+.starting-page>form>input,
+.starting-page>form>button {
   width: 60%;
   height: 30px;
   border-radius: 5px;
 }
-.starting-page>form>span{
+
+.starting-page>form>span {
   color: white;
 }
-.main-container{
+
+.main-container {
   display: flex;
   width: 100%;
   height: 600px;
 }
-.player-Info,.killed-piece-container{
-  
+
+.player-Info,
+.killed-piece-container {
+
   width: 250px;
   height: 100%;
   margin-top: 50px;
   margin-left: 10px;
-  
+
 }
 
-.App{
+.App {
   margin-top: 50px;
   height: 500px;
   width: 800px;
   display: grid;
-  grid-template: 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5%/ 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% ;
+  grid-template: 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5%/ 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5%;
   border: 2px solid black;
 
 }
-.rotate-App{
+
+.rotate-App {
   margin-top: 50px;
   height: 500px;
   width: 800px;
   display: grid;
-  grid-template: 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5%/ 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% ;
+  grid-template: 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5%/ 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5%;
   border: 2px solid black;
-   transform: rotate(180deg);
+  transform: rotate(180deg);
 }
-.rotate-App>#container>img{
-   transform: rotate(180deg);
+
+.rotate-App>#container>img {
+  transform: rotate(180deg);
 
 }
-.rotate-App>#container>span{
-   transform: rotate(180deg);
+
+.rotate-App>#container>span {
+  transform: rotate(180deg);
 
 }
-.white{
-  background-color:  #7fa650;
+
+.white {
+  background-color: #7fa650;
   height: 100%;
   width: 100%;
 }
-#container{
+
+#container {
   height: 100%;
   width: 100%;
   position: relative;
-  
-}
-.black{
-  background-color: rgba(255,255,0,.2);
+
 }
 
-#container > img {
+.black {
+  background-color: rgba(255, 255, 0, .2);
+}
+
+#container>img {
   height: 100%;
   width: 100%;
 }
-.spandiv{
+
+.spandiv {
   position: absolute;
   top: 0;
   left: 0;
 }
 
-.route{
+.route {
   /* background-color: rgb(84, 180, 53); */
   background-color: rgb(156, 185, 51);
 
   border: 1px solid black;
-  
+
 }
-.opponent{
-background-color: red;
-box-shadow: rgb(161, 90, 90);
+
+.opponent {
+  background-color: red;
+  box-shadow: rgb(161, 90, 90);
 }
-.prev-step{
+
+.prev-step {
   background-color: rgb(210, 240, 105);
 }
-.current-step{
+
+.current-step {
   background-color: rgb(172, 172, 109);
 }
-.player-Info{
+
+.player-Info {
   display: grid;
   grid-template: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10% 10% 10% 10% 10% 10% 10% /20% 20% 20% 20%;
-  
+
 }
-.player-Info>img{
+
+.player-Info>img {
   width: 100%;
   height: 100%;
 }
-.killed-piece-container>div{
+
+.killed-piece-container>div {
   color: gray;
 }
-.killed-piece-container>div>span{
+
+.killed-piece-container>div>span {
   color: orangered;
+}
+
+@media screen and (max-width: 480px) {
+  .starting-page>form {
+    width: 80%;
+  }
+
+  .main-container {
+    width: 100%;
+    height: 70%;
+    padding: 5px;
+    flex-direction: column;
+  }
+
+  .App {
+    margin-top: 5px;
+    width: 100%;
+  }
+
+  .rotate-App {
+    margin-top: 5px;
+    width: 100%;
+  }
+
 }
