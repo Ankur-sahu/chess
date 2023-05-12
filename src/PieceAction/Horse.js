@@ -1,7 +1,7 @@
 import opponentPiece from "./opponentPiece"
 import { leftArr, rightArr } from "./sides"
 
-const Horse = (index, actionInitial, type, check) => {
+const Horse = (index, actionInitial, type, check,kingIndex) => {
     //checking for top left block
     let tempTopLeftIndex = index
     tempTopLeftIndex = tempTopLeftIndex - 17
@@ -11,7 +11,7 @@ const Horse = (index, actionInitial, type, check) => {
                 actionInitial[tempTopLeftIndex].routes = type
             } else {
                 if (actionInitial[tempTopLeftIndex].piece.player !== actionInitial[index].piece.player) {
-                    opponentPiece(tempTopLeftIndex, actionInitial, type, check)
+                    opponentPiece(tempTopLeftIndex, actionInitial, type, check,kingIndex)
                 }
             }
         }
@@ -26,7 +26,7 @@ const Horse = (index, actionInitial, type, check) => {
                 actionInitial[tempTopRightIndex].routes = type
             } else {
                 if (actionInitial[tempTopRightIndex].piece.player !== actionInitial[index].piece.player) {
-                    opponentPiece(tempTopRightIndex, actionInitial, type, check)
+                    opponentPiece(tempTopRightIndex, actionInitial, type, check,kingIndex)
                 }
             }
         }
@@ -41,7 +41,7 @@ const Horse = (index, actionInitial, type, check) => {
                 actionInitial[tempBottomLeftIndex].routes = type
             } else {
                 if (actionInitial[tempBottomLeftIndex].piece.player !== actionInitial[index].piece.player) {
-                    opponentPiece(tempBottomLeftIndex, actionInitial, type, check)
+                    opponentPiece(tempBottomLeftIndex, actionInitial, type, check,kingIndex)
                 }
             }
         }
@@ -57,7 +57,7 @@ const Horse = (index, actionInitial, type, check) => {
                 actionInitial[tempBottomRightIndex].routes = type
             } else {
                 if (actionInitial[tempBottomRightIndex].piece.player !== actionInitial[index].piece.player) {
-                    opponentPiece(tempBottomRightIndex, actionInitial, type, check)
+                    opponentPiece(tempBottomRightIndex, actionInitial, type, check,kingIndex)
                 }
             }
         }
@@ -74,7 +74,7 @@ const Horse = (index, actionInitial, type, check) => {
                     actionInitial[tempLeftBottomIndex].routes = type
                 } else {
                     if (actionInitial[tempLeftBottomIndex].piece.player !== actionInitial[index].piece.player) {
-                        opponentPiece(tempLeftBottomIndex, actionInitial, type, check)
+                        opponentPiece(tempLeftBottomIndex, actionInitial, type, check,kingIndex)
                     }
                 }
             }
@@ -91,7 +91,7 @@ const Horse = (index, actionInitial, type, check) => {
                     actionInitial[tempLeftTopIndex].routes = type
                 } else {
                     if (actionInitial[tempLeftTopIndex].piece.player !== actionInitial[index].piece.player) {
-                        opponentPiece(tempLeftTopIndex, actionInitial, type, check)
+                        opponentPiece(tempLeftTopIndex, actionInitial, type, check,kingIndex)
                     }
                 }
             }
@@ -108,7 +108,7 @@ const Horse = (index, actionInitial, type, check) => {
                     actionInitial[tempRightBottomIndex].routes = type
                 } else {
                     if (actionInitial[tempRightBottomIndex].piece.player !== actionInitial[index].piece.player) {
-                        opponentPiece(tempRightBottomIndex, actionInitial, type, check)
+                        opponentPiece(tempRightBottomIndex, actionInitial, type, check,kingIndex)
                     }
                 }
             }
@@ -125,7 +125,7 @@ const Horse = (index, actionInitial, type, check) => {
                     actionInitial[tempRightTopIndex].routes = type
                 } else {
                     if (actionInitial[tempRightTopIndex].piece.player !== actionInitial[index].piece.player) {
-                        opponentPiece(tempRightTopIndex, actionInitial, type, check)
+                        opponentPiece(tempRightTopIndex, actionInitial, type, check,kingIndex)
                     }
                 }
             }

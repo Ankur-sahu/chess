@@ -1,7 +1,7 @@
 import opponentPiece from "./opponentPiece"
 import { leftArr, rightArr } from "./sides";
 
-const Hathi = (index, actionInitial, type, check) => {
+const Hathi = (index, actionInitial, type, check,kingIndex) => {
     //checking for left block
 
     let templeftindex = index
@@ -14,7 +14,7 @@ const Hathi = (index, actionInitial, type, check) => {
             actionInitial[templeftindex].routes = type
         } else {
             if (actionInitial[templeftindex].piece.player !== actionInitial[index].piece.player) {
-                opponentPiece(templeftindex, actionInitial, type, check)
+                opponentPiece(templeftindex, actionInitial, type, check,kingIndex)
                 break
             } else {
                 break
@@ -32,7 +32,7 @@ const Hathi = (index, actionInitial, type, check) => {
             actionInitial[tempRightIndex].routes = type
         } else {
             if (actionInitial[tempRightIndex].piece.player !== actionInitial[index].piece.player) {
-                opponentPiece(tempRightIndex, actionInitial, type, check)
+                opponentPiece(tempRightIndex, actionInitial, type, check,kingIndex)
                 break
             } else {
                 break
@@ -51,7 +51,7 @@ const Hathi = (index, actionInitial, type, check) => {
             actionInitial[tempTopIndex].routes = type
         } else {
             if (actionInitial[tempTopIndex].piece.player !== actionInitial[index].piece.player) {
-                opponentPiece(tempTopIndex, actionInitial, type, check)
+                opponentPiece(tempTopIndex, actionInitial, type, check,kingIndex)
                 break
             } else {
                 break
@@ -70,7 +70,7 @@ const Hathi = (index, actionInitial, type, check) => {
             actionInitial[tempBottomIndex].routes = type
         } else {
             if (actionInitial[tempBottomIndex].piece.player !== actionInitial[index].piece.player) {
-                opponentPiece(tempBottomIndex, actionInitial, type, check)
+                opponentPiece(tempBottomIndex, actionInitial, type, check,kingIndex)
                 break
             } else {
                 break

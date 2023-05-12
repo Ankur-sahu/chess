@@ -2,7 +2,7 @@
 import opponentPiece from "./opponentPiece"
 import { leftArr, rightArr } from "./sides"
 
-const King = (index, actionInitial, type, check) => {
+const King = (index, actionInitial, type, check,kingIndex) => {
     //checking for left top block
     let tempLeftTopIndex = index
     if (!leftArr.includes(tempLeftTopIndex)) {
@@ -12,7 +12,7 @@ const King = (index, actionInitial, type, check) => {
                 actionInitial[tempLeftTopIndex].routes = type
             } else {
                 if (actionInitial[tempLeftTopIndex].piece.player !== actionInitial[index].piece.player) {
-                    opponentPiece(tempLeftTopIndex, actionInitial, type, check)
+                    opponentPiece(tempLeftTopIndex, actionInitial, type, check,kingIndex)
                 }
             }
         }
@@ -27,7 +27,7 @@ const King = (index, actionInitial, type, check) => {
                 actionInitial[templeftindex].routes = type
             } else {
                 if (actionInitial[templeftindex].piece.player !== actionInitial[index].piece.player) {
-                    opponentPiece(templeftindex, actionInitial, type, check)
+                    opponentPiece(templeftindex, actionInitial, type, check,kingIndex)
                 }
             }
         }
@@ -43,7 +43,7 @@ const King = (index, actionInitial, type, check) => {
                 actionInitial[tempRightIndex].routes = type
             } else {
                 if (actionInitial[tempRightIndex].piece.player !== actionInitial[index].piece.player) {
-                    opponentPiece(tempRightIndex, actionInitial, type, check)
+                    opponentPiece(tempRightIndex, actionInitial, type, check,kingIndex)
                 }
             }
         }
@@ -58,7 +58,7 @@ const King = (index, actionInitial, type, check) => {
             actionInitial[tempTopIndex].routes = type
         } else {
             if (actionInitial[tempTopIndex].piece.player !== actionInitial[index].piece.player) {
-                opponentPiece(tempTopIndex, actionInitial, type, check)
+                opponentPiece(tempTopIndex, actionInitial, type, check,kingIndex)
 
             }
         }
@@ -73,7 +73,7 @@ const King = (index, actionInitial, type, check) => {
             actionInitial[tempBottomIndex].routes = type
         } else {
             if (actionInitial[tempBottomIndex].piece.player !== actionInitial[index].piece.player) {
-                opponentPiece(tempBottomIndex, actionInitial, type, check)
+                opponentPiece(tempBottomIndex, actionInitial, type, check,kingIndex)
             }
         }
     }
@@ -87,7 +87,7 @@ const King = (index, actionInitial, type, check) => {
                 actionInitial[tempRightTopIndex].routes = type
             } else {
                 if (actionInitial[tempRightTopIndex].piece.player !== actionInitial[index].piece.player) {
-                    opponentPiece(tempRightTopIndex, actionInitial, type, check)
+                    opponentPiece(tempRightTopIndex, actionInitial, type, check,kingIndex)
                 }
             }
         }
@@ -102,7 +102,7 @@ const King = (index, actionInitial, type, check) => {
                 actionInitial[tempBottomRightIndex].routes = type
             } else {
                 if (actionInitial[tempBottomRightIndex].piece.player !== actionInitial[index].piece.player) {
-                    opponentPiece(tempBottomRightIndex, actionInitial, type, check)
+                    opponentPiece(tempBottomRightIndex, actionInitial, type, check,kingIndex)
                 }
             }
         }
@@ -118,7 +118,7 @@ const King = (index, actionInitial, type, check) => {
                 actionInitial[tempBottomLeftIndex].routes = type
             } else {
                 if (actionInitial[tempBottomLeftIndex].piece.player !== actionInitial[index].piece.player) {
-                    opponentPiece(tempBottomLeftIndex, actionInitial, type, check)
+                    opponentPiece(tempBottomLeftIndex, actionInitial, type, check,kingIndex)
                 }
             }
         }

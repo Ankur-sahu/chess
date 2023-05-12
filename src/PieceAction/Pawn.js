@@ -41,19 +41,19 @@ function leftFunc(index, actionInitial, player) {
     }
 }
 
-function Pawn(index, actionInitial, type, check) {
+function Pawn(index, actionInitial, type, check, kingIndex) {
     const player = actionInitial[index].piece.player === 1 ? 1 : 2
     if (RightFunc(index, actionInitial, player)) {
         if (player === 1) {
             if (Object.hasOwn(actionInitial[index + 7].piece, "pieceId")) {
                 if (actionInitial[index + 7].piece.player !== actionInitial[index].piece.player) {
-                    opponentPiece((index + 7), actionInitial, type, check)
+                    opponentPiece((index + 7), actionInitial, type, check, kingIndex)
                 }
             }
         } else {
             if (Object.hasOwn(actionInitial[index - 7].piece, "pieceId")) {
                 if (actionInitial[index - 7].piece.player !== actionInitial[index].piece.player) {
-                    opponentPiece((index - 7), actionInitial, type, check)
+                    opponentPiece((index - 7), actionInitial, type, check, kingIndex)
                 }
             }
         }
@@ -64,13 +64,13 @@ function Pawn(index, actionInitial, type, check) {
         if (player === 1) {
             if (Object.hasOwn(actionInitial[index + 9].piece, "pieceId")) {
                 if (actionInitial[index + 9].piece.player !== actionInitial[index].piece.player) {
-                    opponentPiece((index + 9), actionInitial, type, check)
+                    opponentPiece((index + 9), actionInitial, type, check, kingIndex)
                 }
             }
         } else {
             if (Object.hasOwn(actionInitial[index - 9].piece, "pieceId")) {
                 if (actionInitial[index - 9].piece.player !== actionInitial[index].piece.player) {
-                    opponentPiece((index - 9), actionInitial, type, check)
+                    opponentPiece((index - 9), actionInitial, type, check, kingIndex)
                 }
             }
         }
@@ -78,11 +78,12 @@ function Pawn(index, actionInitial, type, check) {
     //finding forward route
     if (player === 1) {
         if (index + 8 < 64) {
-            if (!Object.hasOwn(actionInitial[index + 8].piece, "player"))
+            if (!Object.hasOwn(actionInitial[index + 8].piece, "player")) {
                 actionInitial[index + 8].routes = type
-            if (actionInitial[index].id > actionInitial[7].id && actionInitial[index].id < actionInitial[16].id) {
-                if (actionInitial[index + 16].id < 64 && !actionInitial[index + 16].piece.player) {
-                    actionInitial[index + 16].routes = type
+                if (actionInitial[index].id > actionInitial[7].id && actionInitial[index].id < actionInitial[16].id) {
+                    if (actionInitial[index + 16].id < 64 && !actionInitial[index + 16].piece.player) {
+                        actionInitial[index + 16].routes = type
+                    }
                 }
             }
         }
@@ -91,7 +92,7 @@ function Pawn(index, actionInitial, type, check) {
             if (!Object.hasOwn(actionInitial[index - 8].piece, "player")) {
                 actionInitial[index - 8].routes = type
                 if (actionInitial[index].id > actionInitial[47].id && actionInitial[index].id < actionInitial[56].id) {
-                    if (actionInitial[index - 16].id < 64 && !actionInitial[index - 16].piece.player) {
+                    if (actionInitial[index - 16].id > 0 && !actionInitial[index - 16].piece.player) {
                         actionInitial[index - 16].routes = type
                     }
                 }

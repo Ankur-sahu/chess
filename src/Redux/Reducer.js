@@ -1,6 +1,7 @@
 import action_type from "./ActionType"
 import CheckPiece from "../PieceAction/CheckPiece";
 import movePiece from "../PieceAction/movePiece"
+import { check } from "./Actions";
 
 const initialState = {
     actionInitial: [],
@@ -10,6 +11,7 @@ const initialState = {
         prev: null,
         current: null
     },
+    checkIndex: { index: 1 },
     game: 0
 }
 
@@ -58,6 +60,7 @@ export const chessReducer = (state = initialState, action) => {
         case action_type.MOVE:
             let moveArr = [...state.actionInitial]
             let killedP = [...state.killed]
+            let kingIndex = { ...state.checkIndex }
             if (moveArr[action.payload.index].piece.pieceId === 61 || moveArr[action.payload.index].piece.pieceId === 5) {
                 return { ...state, game: moveArr[action.payload.blockSelected].piece.player }
             }
@@ -72,8 +75,16 @@ export const chessReducer = (state = initialState, action) => {
             tempObj.prev = action.payload.blockSelected
             tempObj.current = action.payload.index
             movePiece(moveArr, action.payload.blockSelected, action.payload.index)
-            CheckPiece(action.payload.index, moveArr, false, true)
-            return { ...state, actionInitial: [...moveArr], turn: !state.turn, killed: [...killedP], lastStep: { ...tempObj } }
+            if (Object.hasOwn(kingIndex, "index")) {
+                moveArr[kingIndex.index].check = false
+            }
+            for (let i = 0; i < 64; i++) {
+                if (Object.hasOwn(moveArr[i].piece, "pieceId")) {
+                    CheckPiece(i, moveArr, false, true, kingIndex)
+                }
+            }
+
+            return { ...state, actionInitial: [...moveArr], turn: !state.turn, killed: [...killedP], lastStep: { ...tempObj }, checkIndex: { ...kingIndex } }
 
         default:
             return state;

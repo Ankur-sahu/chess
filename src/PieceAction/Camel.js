@@ -1,7 +1,7 @@
 import opponentPiece from "./opponentPiece"
 import { leftArr, rightArr } from "./sides"
 
-const Camel = (index, actionInitial, type, check) => {
+const Camel = (index, actionInitial, type, check,kingIndex) => {
     let tempLeftTopIndex = index
     //checking for left top blocks
     while (!leftArr.includes(tempLeftTopIndex)) {
@@ -13,7 +13,7 @@ const Camel = (index, actionInitial, type, check) => {
             actionInitial[tempLeftTopIndex].routes = type
         } else {
             if (actionInitial[tempLeftTopIndex].piece.player !== actionInitial[index].piece.player) {
-                opponentPiece(tempLeftTopIndex, actionInitial, type, check)
+                opponentPiece(tempLeftTopIndex, actionInitial, type, check,kingIndex)
                 break
             } else {
                 break
@@ -31,7 +31,7 @@ const Camel = (index, actionInitial, type, check) => {
             actionInitial[tempRightTopIndex].routes = type
         } else {
             if (actionInitial[tempRightTopIndex].piece.player !== actionInitial[index].piece.player) {
-                opponentPiece(tempRightTopIndex, actionInitial, type, check)
+                opponentPiece(tempRightTopIndex, actionInitial, type, check,kingIndex)
                 break
             } else {
                 break
@@ -49,7 +49,7 @@ const Camel = (index, actionInitial, type, check) => {
             actionInitial[tempBottomRightIndex].routes = type
         } else {
             if (actionInitial[tempBottomRightIndex].piece.player !== actionInitial[index].piece.player) {
-                opponentPiece(tempBottomRightIndex, actionInitial, type, check)
+                opponentPiece(tempBottomRightIndex, actionInitial, type, check,kingIndex)
                 break
             } else {
                 break
@@ -67,7 +67,7 @@ const Camel = (index, actionInitial, type, check) => {
             actionInitial[tempBottomLeftIndex].routes = type
         } else {
             if (actionInitial[tempBottomLeftIndex].piece.player !== actionInitial[index].piece.player) {
-                opponentPiece(tempBottomLeftIndex, actionInitial, type, check)
+                opponentPiece(tempBottomLeftIndex, actionInitial, type, check,kingIndex)
                 break
             } else {
                 break
