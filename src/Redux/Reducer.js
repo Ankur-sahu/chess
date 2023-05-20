@@ -8,7 +8,7 @@ const initialState = {
     turn: true,
     killed: [],
     lastStep: {
-        prev: null,
+        prev: null, 
         current: null
     },
     checkIndex: { index: 1 },

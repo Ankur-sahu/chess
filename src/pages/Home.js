@@ -50,7 +50,7 @@ function Home() {
                     value={roomId}
                 />
                 <button type="submit" onClick={joinRoom}>Join Game</button>
-                <span>Or</span>
+                <span>Or</span> 
                 <button onClick={createNewRoom}>New Game</button>
             </form>
         </div>
